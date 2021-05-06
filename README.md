@@ -1,2 +1,4 @@
-# burb
-Upload audio to burb and send links.
+# burb 🐦
+* upload audio to burb
+* generate url per distinct audio
+* browse uploaded audio
