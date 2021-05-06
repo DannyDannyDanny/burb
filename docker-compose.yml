@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+  api:
+    container_name:  "burb-api"
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    command: sh ./docker-start.sh
+    ports:
+      - "3333:3333"
+    networks:
+      - default
+    depends_on:
+      - db
+  db:
+    container_name: "burb-db"
+    image: postgres:latest
+    volumes:
+      - "./db/db-data/:/var/lib/postgresql/data/"
+    ports:
+      - 5432:5432
+    networks:
+      - default
+    environment:
+      POSTGRES_USER: username # The PostgreSQL user (useful to connect to the database)
+      POSTGRES_PASSWORD: password # The PostgreSQL password (useful to connect to the database)
+      POSTGRES_DB: default_database # The PostgreSQL default database (automatically created at first launch)"
+
+#define network
+networks:
+  default:
+    driver: bridge
