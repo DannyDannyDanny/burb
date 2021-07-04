@@ -1,13 +1,25 @@
 version: '3.7'
 services:
+  web:
+    container_name:  "burb-web"
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    networks:
+      - default
+    depends_on:
+      - api
   api:
     container_name:  "burb-api"
     build:
       context: ./api
       dockerfile: Dockerfile
-    # command: sh ./docker-start.sh
-    # ports:
-      # - "3333:3333"
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./api/uploads:/usr/src/app/uploads"
     networks:
       - default
     depends_on:
