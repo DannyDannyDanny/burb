@@ -1,5 +1,6 @@
 # burb 🐦
 * upload audio to burb
+* validate audio
 * generate url per distinct audio
 * browse uploaded audio
 
