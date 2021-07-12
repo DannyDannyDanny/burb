@@ -22,8 +22,6 @@ services:
       - "./ftp/data:/usr/src/app/uploads"
     networks:
       - default
-    depends_on:
-      - db
   ftp:
     container_name:  "burb-ftp"
     image: stilliard/pure-ftpd
@@ -52,7 +50,6 @@ services:
       - '6379:6379'
     networks:
       - default
-    environment:
 
 #define network
 networks:
