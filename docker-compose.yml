@@ -31,6 +31,17 @@ services:
     volumes: # remember to replace /folder_on_disk/ with the path to where you want to store the files on the host machine
       - "./ftp/data:/home/username/"
       - "./ftp/passwd:/etc/pure-ftpd/passwd"
+  python:
+    container_name:  "burb-python"
+    build:
+      context: ./burb
+      dockerfile: Dockerfile
+    # ports:
+    #   - "3000:3000"
+    volumes:
+      - "./ftp/data:/folder-in-container"
+    networks:
+      - default
 # uncomment for ssl/tls, see https://github.com/stilliard/docker-pure-ftpd#tls
 #      - "/folder_on_disk/ssl:/etc/ssl/private/"
 # or ssl/tls with Let's Encrypt (cert and key as two files)
