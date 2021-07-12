@@ -10,12 +10,11 @@ const storage = multer.diskStorage({
 });  
 
 const fileFilter = (req, file, cb) => {
-    if((file.mimetype).includes('audio')){
+    if(file.mimetype.includes('audio')){
         cb(null, true);
     } else{
         cb(null, false);
     }
-
 };
 
 let upload = multer({ storage: storage, fileFilter: fileFilter,});

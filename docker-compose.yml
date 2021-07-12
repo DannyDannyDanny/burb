@@ -19,24 +19,40 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - "./api/uploads:/usr/src/app/uploads"
+      - "./ftp/data:/usr/src/app/uploads"
     networks:
       - default
     depends_on:
       - db
-  db:
-    container_name: "burb-db"
-    image: postgres:latest
-    #w volumes:
-      #w - "./db/db-data/:/var/lib/postgresql/data/"
-    # ports:
-      # - 5432:5432
+  ftp:
+    container_name:  "burb-ftp"
+    image: stilliard/pure-ftpd
+    ports:
+      - "21:21"
+      - "30000-30009:30000-30009"
+    volumes: # remember to replace /folder_on_disk/ with the path to where you want to store the files on the host machine
+      - "./ftp/data:/home/username/"
+      - "./ftp/passwd:/etc/pure-ftpd/passwd"
+# uncomment for ssl/tls, see https://github.com/stilliard/docker-pure-ftpd#tls
+#      - "/folder_on_disk/ssl:/etc/ssl/private/"
+# or ssl/tls with Let's Encrypt (cert and key as two files)
+#      - "/etc/letsencrypt/live/<your_server>/cert.pem:/etc/ssl/private/pure-ftpd-cert.pem"
+#      - "/etc/letsencrypt/live/<your_server>/privkey.pem:/etc/ssl/private/pure-ftpd-key.pem"
+    environment:
+      PUBLICHOST: "localhost"
+      FTP_USER_NAME: username
+      FTP_USER_PASS: mypass
+      FTP_USER_HOME: /home/username
+  redis:
+    container_name: "burb-redis"
+    image: redis:latest
+    volumes:
+      - "./db/redis/data:/data"
+    ports:
+      - '6379:6379'
     networks:
       - default
     environment:
-      POSTGRES_USER: username # The PostgreSQL user (useful to connect to the database)
-      POSTGRES_PASSWORD: password # The PostgreSQL password (useful to connect to the database)
-      POSTGRES_DB: default_database # The PostgreSQL default database (automatically created at first launch)"
 
 #define network
 networks:
