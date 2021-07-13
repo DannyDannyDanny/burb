@@ -1,33 +1,17 @@
-ARG OWNER=jupyter
-ARG BASE_CONTAINER=$OWNER/base-notebook
-FROM $BASE_CONTAINER
+# set base image (host OS)
+FROM python:3.8
 
-USER root
+# set the working directory in the container
+WORKDIR /code
 
-# Install all OS dependencies for fully functional notebook server
-RUN apt-get update --yes && \
-    apt-get install --yes --no-install-recommends \
-    vim-tiny \
-    git \
-    inkscape \
-    libsm6 \
-    libxext-dev \
-    libxrender1 \
-    lmodern \
-    netcat \
-    openssh-client \
-    # ---- nbconvert dependencies ----
-    texlive-xetex \
-    texlive-fonts-recommended \
-    texlive-plain-generic \
-    # ----
-    tzdata \
-    unzip \
-    nano-tiny && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+# copy the dependencies file to the working directory
+COPY requirements.txt .
 
-# Create alternative for nano -> nano-tiny
-RUN update-alternatives --install /usr/bin/nano nano /bin/nano-tiny 10
+# install dependencies
+# RUN pip install -r requirements.txt
 
-# Switch back to jovyan (jupyterlab user) to avoid container runs as root
-USER ${NB_UID}
+# copy the content of the local src directory to the working directory
+COPY src/ .
+
+# command to run on container start
+CMD [ "python", "./server.py" ]

@@ -46,13 +46,12 @@ services:
     build:
       context: ./burb
       dockerfile: Dockerfile
-    ports:
-      - "8000:8000"
+    # ports:
+    #   - "3000:3000"
     volumes:
       - "./ftp/data:/folder-in-container"
     networks:
       - default
-    entrypoint: sh -c 'jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --notebook-dir=/opt/app/data --allow-root'
   redis:
     container_name: "burb-redis"
     image: redis:latest
