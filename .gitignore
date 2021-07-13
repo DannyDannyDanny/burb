@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Burb specific
+ftp/data/
+db/redis/
