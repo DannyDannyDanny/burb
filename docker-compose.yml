@@ -22,8 +22,6 @@ services:
       - "./ftp/data:/usr/src/app/uploads"
     networks:
       - default
-    depends_on:
-      - db
   ftp:
     container_name:  "burb-ftp"
     image: stilliard/pure-ftpd
@@ -39,7 +37,7 @@ services:
 #      - "/etc/letsencrypt/live/<your_server>/cert.pem:/etc/ssl/private/pure-ftpd-cert.pem"
 #      - "/etc/letsencrypt/live/<your_server>/privkey.pem:/etc/ssl/private/pure-ftpd-key.pem"
     environment:
-      PUBLICHOST: "localhost"
+      PUBLICHOST: "134.122.86.78"
       FTP_USER_NAME: username
       FTP_USER_PASS: mypass
       FTP_USER_HOME: /home/username
@@ -52,7 +50,6 @@ services:
       - '6379:6379'
     networks:
       - default
-    environment:
 
 #define network
 networks:
