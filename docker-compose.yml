@@ -36,12 +36,13 @@ services:
     build:
       context: ./burb
       dockerfile: Dockerfile
-    # ports:
-    #   - "3000:3000"
+    ports:
+      - "8000:8000"
     volumes:
       - "./ftp/data:/folder-in-container"
     networks:
       - default
+    entrypoint: sh -c 'jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --notebook-dir=/opt/app/data --allow-root'
 # uncomment for ssl/tls, see https://github.com/stilliard/docker-pure-ftpd#tls
 #      - "/folder_on_disk/ssl:/etc/ssl/private/"
 # or ssl/tls with Let's Encrypt (cert and key as two files)
