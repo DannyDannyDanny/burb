@@ -31,11 +31,6 @@ services:
     volumes: # remember to replace /folder_on_disk/ with the path to where you want to store the files on the host machine
       - "./ftp/data:/home/username/"
       - "./ftp/passwd:/etc/pure-ftpd/passwd"
-# uncomment for ssl/tls, see https://github.com/stilliard/docker-pure-ftpd#tls
-#      - "/folder_on_disk/ssl:/etc/ssl/private/"
-# or ssl/tls with Let's Encrypt (cert and key as two files)
-#      - "/etc/letsencrypt/live/<your_server>/cert.pem:/etc/ssl/private/pure-ftpd-cert.pem"
-#      - "/etc/letsencrypt/live/<your_server>/privkey.pem:/etc/ssl/private/pure-ftpd-key.pem"
     environment:
       PUBLICHOST: "134.122.86.78"
       FTP_USER_NAME: username
