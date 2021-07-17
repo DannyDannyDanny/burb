@@ -17,4 +17,4 @@ COPY . .
 
 EXPOSE 3000
 RUN ["chmod", "+x", "run.sh"]
-CMD ./run.sh
+ENTRYPOINT [ "./run.sh" ]

@@ -1,8 +1,10 @@
 function upload(req, res, next) {
-    // save files and details to redis search  db
-    const path = req.file.path.replace(/\\/g, "/");
-    
-    res.json(path);
+    res.json({
+        url: req.file.path.replace(/\\/g, "/"),
+        filename: req.file.filename,
+        originalname: req.file.originalname,
+        size: req.file.size
+    });
 }
 
 function search(req, res, next){

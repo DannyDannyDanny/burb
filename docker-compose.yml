@@ -45,7 +45,8 @@ services:
     #   - "3000:3000"
     volumes:
       - "./ftp/data:/folder-in-container"
-      - "./burb/server:/code"
+      - "./burb/output:/code/output"
+
     networks:
       - default
   redis:

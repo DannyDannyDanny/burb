@@ -1,0 +1,22 @@
+testing dir: ..../root
+../opt
+../var
+../sys
+../boot
+../run
+../proc
+../srv
+../tmp
+../mnt
+../bin
+../media
+../sbin
+../dev
+../home
+../usr
+../etc
+../lib64
+../lib
+../folder-in-container
+../.dockerenv
+../code

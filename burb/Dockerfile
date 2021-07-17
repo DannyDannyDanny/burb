@@ -14,6 +14,6 @@ COPY requirements.txt ./
 COPY . .
 
 # command to run on container start
-RUN python ./src/server.py
+RUN python ./server.py
 # CMD [ "python", "./server.py" ]
 CMD ["python", "-m", "http.server"]
