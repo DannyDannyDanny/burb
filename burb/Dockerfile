@@ -14,7 +14,6 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # command to run on container start
-CMD python -c "from pathlib import Path; print(Path('.').absolute())"
-CMD python -c "from pathlib import Path; print(list(Path('.').iterdir()))"
-# CMD [ "python", "src/server.py" ]
-# CMD ["python", "-m", "http.server"]
+#RUN python ./server.py
+CMD [ "python", "./server.py" ]
+#CMD ["python", "-m", "http.server"]
