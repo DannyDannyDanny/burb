@@ -41,6 +41,15 @@
 				>
 					{{ audio.originalname}}
 					<audio :id="index" :src="audio.path"></audio>
+                    <div>
+                        <button>add tags</button>
+                        <br><label>url: <a :href="audio.path" >{{audio.path}}</a></label>
+                        <br><label>mimetype: {{audio.mimetype}}</label>
+                        <br><label>originalname: {{audio.originalname}}</label>
+                        <br><label>size: {{audio.size}}</label>
+                        <br><label>encoding: {{audio.encoding}}</label>
+                    </div>
+                    
 				</li>
 			</ul>
 		</div>
