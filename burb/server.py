@@ -35,4 +35,12 @@ while True:
     logger.debug(mydirs)
     myfile.write_text(mytext)
 
-    time.sleep(60)
+    #TODO: read list of new files (from db)
+    if False:
+        # reading file from directory
+        filepath = '.' # TODO: get a file from db
+        file_to_read = Path(filepath)
+        logger.debug(f'reading file {file_to_read.absolute()}')
+        logger.debug(f'file size: {file_to_read.stat().st_size}')
+
+    time.sleep(60*60)
