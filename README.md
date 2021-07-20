@@ -1,16 +1,14 @@
 # burb 🐦
-* upload audio to burb
-* validate audio
-* generate url per distinct audio
-* browse uploaded audio
+Share sounds
 
-## Components
-* API
-* App
-* Burb
-* DB
-* FTP
-* Web
+|Components| Description
+|--|--|
+|[Web](web/README.md)  | Web interface for burb |
+|[API](api/README.md)  | Uploades audio to server |
+|[Burb](burb/README.md)| Audio parsing engine |
+|[DB](db/README.md)    | Keep organized! |
+|[FTP](ftp/README.md)  | Admin upload! |
+|[App](app/README.md)  | _Future feature!_ 🚀 |
 
 # Local setup
 
