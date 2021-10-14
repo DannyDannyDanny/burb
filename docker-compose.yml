@@ -48,7 +48,7 @@ services:
     volumes:
       - "./ftp/data:/folder-in-container"
       - "./burb/output:/code/output"
-      - "~/Documents/dancexl:/code/audio_files"
+      - "~/Documents/2021_dancexl:/code/audio_files"
 
     networks:
       - default
