@@ -1,46 +1,31 @@
 from pathlib import Path
 import time
 from loguru import logger
+import os
 logger.add("output/log.txt", level="DEBUG")
 
-logger.debug('')
-while True:
-    # list dirs in current folder and write to file (files_in_here.txt)
-    mypath = '.'
-    mydirs = "\n".join([str(p) for p in Path(mypath).iterdir()])
-    logger.debug('files in current dir')
-    logger.debug(mydirs)
-    myfilename = 'output/files_in_here.txt'
-    myfile = Path(myfilename)
-    mytext = f'testing dir: {mypath}' + mydirs
-    myfile.write_text(mytext)
+AUDIO_FILES_DIR = os.environ['AUDIO_FILES_DIR']
+logger.debug(f'{AUDIO_FILES_DIR = }')
 
-    # list dirs in parent folder and write to file (files_in_parent.txt)
-    mypath = '..'
-    mydirs = "\n".join([str(p) for p in Path(mypath).iterdir()])
-    logger.debug('files in parent')
-    logger.debug(mydirs)
-    myfilename = 'output/files_in_parent.txt'
-    myfile = Path(myfilename)
-    mytext = f'testing dir: {mypath}' + mydirs
-    myfile.write_text(mytext)
+logger.debug(f'{list(Path(".").iterdir()) = }')
+for p in Path('.').iterdir():
+    if p.is_dir():
+        logger.debug(f'{str(p)} -> {len(list(p.iterdir()))} files')
+    else:
+        logger.debug(f'{str(p)} is file')
 
-    # write absolute file path to file (absolute.txt)
-    mypath = '..'
-    mydirs = "\n".join([str(p) for p in Path(mypath).iterdir()])
-    myfilename = 'output/absolute.txt'
-    myfile = Path(myfilename)
-    mytext = str(myfile.absolute())
-    logger.debug('absolute path')
-    logger.debug(mydirs)
-    myfile.write_text(mytext)
+logger.debug(f'{list(Path(AUDIO_FILES_DIR).iterdir()) = }')
+# TODO: bring while back with sleep
+# while True:
 
-    #TODO: read list of new files (from db)
-    if False:
-        # reading file from directory
-        filepath = '.' # TODO: get a file from db
-        file_to_read = Path(filepath)
-        logger.debug(f'reading file {file_to_read.absolute()}')
-        logger.debug(f'file size: {file_to_read.stat().st_size}')
+# list dirs in audio folder
+mydirs = [p.name for p in Path(AUDIO_FILES_DIR).iterdir()]
+logger.debug('files in audio dir:\n' + "\n\t".join(mydirs))
 
-    time.sleep(60*60)
+# myfilename = 'output/files_in_parent.txt'
+# myfile = Path(myfilename)
+# mytext = f'testing dir: {mypath}' + mydirs
+# myfile.write_text(mytext)
+
+# TODO: bring sleep back with while
+# time.sleep(60*60)
