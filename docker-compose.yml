@@ -41,11 +41,14 @@ services:
     build:
       context: ./burb
       dockerfile: Dockerfile
+    environment:
+      AUDIO_FILES_DIR: "audio_files/"
     # ports:
     #   - "3000:3000"
     volumes:
       - "./ftp/data:/folder-in-container"
       - "./burb/output:/code/output"
+      - "~/Documents/dancexl:/code/audio_files"
 
     networks:
       - default
