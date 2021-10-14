@@ -3,7 +3,7 @@ services:
   - docker
 
 before_script:
-  - mkdir ~/Documents/2021_dancexl
+  - mkdir -p ~/Documents/2021_dancexl
   - touch ~/Documents/2021_dancexl/file1.mp3
   - echo "<insert mp3 data>" >> ~/Documents/2021_dancexl/file1.mp3
 script:
