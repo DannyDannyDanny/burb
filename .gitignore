@@ -131,3 +131,4 @@ dmypy.json
 # Burb specific
 ftp/data/
 db/redis/
+burb/output/
