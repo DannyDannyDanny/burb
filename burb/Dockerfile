@@ -1,19 +1,10 @@
-# set base image (host OS)
 FROM python:3.8
-
-# set the working directory in the container
 WORKDIR /code
-
-# copy the dependencies file to the working directory
-COPY requirements.txt ./
-
-# install dependencies
+COPY ./requirements.txt /code/requirements.txt
 RUN pip install -r requirements.txt
-
-# copy the content of the local src directory to the working directory
-COPY . .
-
-# command to run on container start
-#RUN python ./server.py
-CMD [ "python", "./server.py" ]
-#CMD ["python", "-m", "http.server"]
+COPY . /code
+# RUN pip install .
+# ENTRYPOINT python docker-main.py
+# ENV DW_PGSQL='postgresql://postgres:mypassword@postgres-db:5432/tap3_import'
+# ENTRYPOINT python dockermain.py
+ENTRYPOINT [ "python", "./server.py" ]
